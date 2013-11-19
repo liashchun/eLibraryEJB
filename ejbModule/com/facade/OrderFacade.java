@@ -1,5 +1,10 @@
 package com.facade;
 
-public class OrderFacade {
+import java.util.*;
+import javax.ejb.*;
+import com.model.*;
+
+@Local
+public interface OrderFacade {
 
 }

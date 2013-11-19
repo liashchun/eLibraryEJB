@@ -1,5 +1,10 @@
 package com.facade;
 
-public class AbonementFacadeImp {
+import java.util.*;
+import javax.ejb.*;
+import com.model.*;
+
+@Stateless
+public class AbonementFacadeImp implements AbonementFacade {
 
 }

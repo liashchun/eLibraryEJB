@@ -1,5 +1,10 @@
 package com.facade;
 
-public class OrderFacadeImp {
+import java.util.*;
+import javax.ejb.*;
+import com.model.*;
+
+@Stateless
+public class OrderFacadeImp implements OrderFacade {
 
 }

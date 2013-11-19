@@ -1,11 +1,8 @@
 package com.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.sql.Date;
+import java.util.*;
 
 @Entity
 @Table(name = "ORDERS")
@@ -14,8 +11,20 @@ public class Order {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
+	@ManyToMany
+	@JoinTable
+	(name = "ORDER_has_BOOK",
+	joinColumns = 
+		{@JoinColumn(name="ORDER_ID")},
+	inverseJoinColumns=
+		{@JoinColumn(name="BOOK_ID")}
+	)
+	private Set<Book> books;	
+	
 	private Date date;
 	private String status;
+	private String type;
 	
 	public Order() {
 	}

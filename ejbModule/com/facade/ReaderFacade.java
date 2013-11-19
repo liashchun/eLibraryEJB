@@ -1,5 +1,18 @@
 package com.facade;
 
-public class ReaderFacade {
+import java.util.*;
+import javax.ejb.*;
+import com.model.*;
 
+@Local
+public interface ReaderFacade {
+	void save(Reader reader);
+
+	Reader update(Reader reader);
+
+	void delete(Reader reader);
+
+	Reader find(int entityID);
+
+	List<Reader> findAll();
 }

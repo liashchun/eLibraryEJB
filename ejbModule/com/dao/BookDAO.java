@@ -11,7 +11,7 @@ public class BookDAO extends GenericDAO<Book> {
 		super(Book.class);
 	}
 
-	public void delete(Book dog) {
-		super.delete(dog.getId(), Book.class);
+	public void delete(Book book) {
+		super.delete(book.getId(), Book.class);
 	}
 }
