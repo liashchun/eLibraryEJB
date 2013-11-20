@@ -3,17 +3,19 @@ package com.model;
 import javax.persistence.*;
 import java.math.*;
 import java.util.*;
+import java.io.*;
 
 @Entity
 @Table(name = "BOOKS")
-public class Book {
+public class Book implements Serializable {
+	private static final long serialVersionUID = -3344824610577302398L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@ManyToMany(mappedBy="books")
-	private Set<Order> orderSet = new HashSet<Order>(); 
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy="books")
+	private Set<Order> orders = new HashSet<Order>(); 
 	
 	private String name;
 	private String authors;
@@ -23,6 +25,10 @@ public class Book {
 	private String keywords;
 	private String genre;
 	private String description;
+	
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "CATALOGUE_ID", nullable = false)
+	private Catalogue catalogue;
 	
 	public Book() {
 	}
@@ -110,7 +116,6 @@ public class Book {
 			Book book = (Book) obj;
 			return book.getId() == getId();
 		}
-		
 		return false;
 	}
 }

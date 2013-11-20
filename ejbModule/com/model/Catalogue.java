@@ -1,10 +1,7 @@
 package com.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.*;
 
 @Entity
 @Table(name = "CATALOGUES")
@@ -15,6 +12,9 @@ public class Catalogue {
 	private int id;
 
 	private String name;
+	
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "catalogue", cascade = CascadeType.ALL)
+	private Set<Book> books = new HashSet<Book>();
 
 	public int getId() {
 		return id;
