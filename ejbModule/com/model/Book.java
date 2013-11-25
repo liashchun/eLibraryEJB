@@ -43,10 +43,6 @@ public class Book implements Serializable {
 	private String genre;
 	private String description;
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "CATALOGUE_ID", nullable = false)
-	private Catalogue catalogue;
-	
 	public Book() {
 	}
 	

@@ -13,9 +13,6 @@ public class Catalogue {
 
 	private String name;
 	
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "catalogue", cascade = CascadeType.ALL)
-	private Set<Book> books = new HashSet<Book>();
-
 	public int getId() {
 		return id;
 	}

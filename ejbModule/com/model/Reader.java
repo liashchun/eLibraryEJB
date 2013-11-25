@@ -15,28 +15,28 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "READERS")
+@Table(name = "READER")
 @NamedQueries({ 
 	@NamedQuery(name = "Reader.findReaderByEmail", 
 				query = "SELECT u FROM Reader u WHERE u.email = :email") 
 })
 public class Reader {
-	public static final String FIND_BY_EMAIL = "Reader.findUserByEmail";
+	public static final String FIND_BY_EMAIL = "Reader.findReaderByEmail";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	private String name;
-	private String password;
+	private String balance;
 	private String email;
 	
 	public String getPassword() {
-		return password;
+		return balance;
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
+		this.balance = password;
 	}
 
 	public String getEmail() {
@@ -85,7 +85,6 @@ public class Reader {
 			Reader reader = (Reader) obj;
 			return reader.getId() == getId();
 		}
-		
 		return false;
 	}
 }
