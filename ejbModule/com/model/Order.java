@@ -13,14 +13,7 @@ public class Order {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable
-	(name = "ORDER_has_BOOK",
-	joinColumns = 
-		{@JoinColumn(name="ORDER_ID")},
-	inverseJoinColumns=
-		{@JoinColumn(name="BOOK_ID")}
-	)
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy="orders")
 	private Set<Book> books;	
 	
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

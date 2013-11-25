@@ -72,6 +72,31 @@ public abstract class GenericDAO<T> {
 
 		return result;
 	}
+	
+	// Using the unchecked because JPA does not have a
+	// ery.getSingleResult()<T> method
+	@SuppressWarnings("unchecked")
+	protected List<T> findAllResults(String namedQuery, Map<String, Object> parameters) {
+		List<T> resultList = null;
+
+		try {
+			Query query = em.createNamedQuery(namedQuery);
+
+			// Method that will populate parameters if they are passed not null
+			// and empty
+			if (parameters != null && !parameters.isEmpty()) {
+				populateQueryParameters(query, parameters);
+			}
+
+			resultList = (List<T>) query.getResultList();
+
+		} catch (Exception e) {
+			System.out.println("Error while running query: " + e.getMessage());
+			e.printStackTrace();
+		}
+
+		return resultList;
+	}
 
 	private void populateQueryParameters(Query query,
 			Map<String, Object> parameters) {

@@ -1,27 +1,44 @@
 package com.model;
 
 import javax.persistence.*;
+
 import java.math.*;
 import java.util.*;
 import java.io.*;
 
 @Entity
-@Table(name = "BOOKS")
+@Table(name = "BOOK")
+@NamedQueries({ 
+	@NamedQuery(name = "Book.findBookByCriterias", 
+				query = "SELECT b FROM Book b WHERE b.name LIKE :name AND" +
+								" b.authors LIKE :authors AND" + 
+								" b.keywords LIKE :keywords AND" +
+								" b.isbn LIKE :isbn AND" + 
+								" b.genre LIKE :genre") 
+})
 public class Book implements Serializable {
+	public static final String FIND_BY_CRITERIAS = "Book.findBookByCriterias";
 	private static final long serialVersionUID = -3344824610577302398L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy="books")
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable
+	(name = "ORDER_has_BOOK",
+	joinColumns = 
+		{@JoinColumn(name="ORDER_ID")},
+	inverseJoinColumns=
+		{@JoinColumn(name="BOOK_ID")}
+	)
 	private Set<Order> orders = new HashSet<Order>(); 
 	
 	private String name;
 	private String authors;
-	private String ISBN;
+	private String isbn;
 	private BigDecimal price;
-	private int amount;
+	private Integer amount;
 	private String keywords;
 	private String genre;
 	private String description;
@@ -42,11 +59,11 @@ public class Book implements Serializable {
 	}
 
 	public String getISBN() {
-		return ISBN;
+		return isbn;
 	}
 
 	public void setISBN(String iSBN) {
-		ISBN = iSBN;
+		isbn = iSBN;
 	}
 
 	public BigDecimal getPrice() {
@@ -57,11 +74,11 @@ public class Book implements Serializable {
 		this.price = price;
 	}
 
-	public int getAmount() {
+	public Integer getAmount() {
 		return amount;
 	}
 
-	public void setAmount(int amount) {
+	public void setAmount(Integer amount) {
 		this.amount = amount;
 	}
 

@@ -1,10 +1,11 @@
 package com.facade;
 
-import java.util.*;
 import javax.ejb.*;
-import com.model.*;
+import com.dao.*;
+
 
 @Stateless
-public class LibrarianFacadeImp {
-		
+public class LibrarianFacadeImp implements LibrarianFacade {
+	@EJB 
+	private LibrarianDAO librarianDAO;	
 }

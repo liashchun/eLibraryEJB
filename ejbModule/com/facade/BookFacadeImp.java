@@ -1,8 +1,10 @@
 package com.facade;
 
 import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+
 import com.dao.BookDAO;
 import com.model.Book;
 
@@ -37,6 +39,12 @@ public class BookFacadeImp implements BookFacade {
 	@Override
 	public List<Book> findAll() {
 		return bookDAO.findAll();
+	}
+	
+	@Override
+	public List<Book> findByCriterias(String name, String authors, String isbn, 
+			String keywords, String genre) {
+		return bookDAO.findBooksByCriterias(name, authors, isbn, keywords, genre);
 	}
 
 	private void isBookWithAllData(Book book) {

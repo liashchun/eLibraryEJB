@@ -1,7 +1,9 @@
 package com.facade;
 
 import java.util.*;
+
 import javax.ejb.*;
+
 import com.model.*;
 
 @Local
@@ -15,4 +17,6 @@ public interface ReaderFacade {
 	Reader find(int entityID);
 
 	List<Reader> findAll();
+	
+	public Reader findReaderByEmail(String email);
 }

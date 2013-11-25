@@ -16,4 +16,7 @@ public interface BookFacade {
 	public abstract Book find(int entityID);
 
 	public abstract List<Book> findAll();
+	
+	List<Book> findByCriterias(String name, String authors, String isbn, 
+			String keywords, String genre);
 }

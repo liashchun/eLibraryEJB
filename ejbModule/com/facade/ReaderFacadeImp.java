@@ -1,7 +1,9 @@
 package com.facade;
 
 import java.util.*;
+
 import javax.ejb.*;
+
 import com.dao.*;
 import com.model.*;
 
@@ -33,5 +35,10 @@ public class ReaderFacadeImp implements ReaderFacade {
 	@Override
 	public List<Reader> findAll() {
 		return readerDAO.findAll();
+	}
+	
+	@Override
+	public Reader findReaderByEmail(String email) {
+		return readerDAO.findReaderByEmail(email);
 	}
 }
